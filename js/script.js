@@ -5,6 +5,7 @@ let pokemons = []
 const initButton = document.getElementById("init-button");
 const inputBar = document.getElementById("input-bar");
 const pokedex = document.getElementById("pokedex");
+const filters = inputBar.querySelectorAll(".filter");
 
 initButton.addEventListener('click', () => {
     initButton.style.visibility = 'hidden';
@@ -43,4 +44,9 @@ function showPokemons() {
             <p class='pokemon-types'>${typesLine}</p>
         </div>`
     }
+}
+
+// Filtrado de Pokedex
+for (const filter of filters) {
+    console.log(filter)
 }
