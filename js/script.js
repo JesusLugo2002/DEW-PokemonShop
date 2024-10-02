@@ -39,9 +39,8 @@ function showPokemons() {
         pokedex.innerHTML += `
         <div class="pokemon">
             <p>${pokemon.id}. ${pokemon.name}</p>
-            <img src="${pokemon.spr_front}">
-            <img src="${pokemon.spr_back}">
-            <p>${typesLine}</p>
+            <img src="${pokemon.sprite}">
+            <p class='pokemon-types'>${typesLine}</p>
         </div>`
     }
 }

@@ -1,7 +1,45 @@
 #input-bar {
     visibility: hidden;
+    margin: 25px;
 }
 
 #loading-data-text {
     visibility: hidden;
+}
+
+body {
+    background: #99CCFF;
+}
+
+header {
+    text-align: center;
+}
+
+/* Pokedex */
+
+#pokedex {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.pokemon {
+    border: 2px solid rgb(78, 78, 78);
+    border-radius: 20px;    
+    text-align: center;
+    background-image: linear-gradient(rgb(161, 159, 159), rgb(255, 255, 255));
+    transition: 0.3s;
+}
+
+.pokemon img {
+    width: 120px;
+}
+
+.pokemon:hover {
+    transform: scale(1.1);
+}
+
+.pokemon-types {
+    background-color: rgb(219, 219, 219);
 }
