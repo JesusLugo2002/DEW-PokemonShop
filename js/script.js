@@ -1,11 +1,10 @@
 import Pokemon from "./Pokemon.js";
-let pokemons = []
+let totalPokemons = []
 
 // Inicialización de la aplicación
 const initButton = document.getElementById("init-button");
 const inputBar = document.getElementById("input-bar");
 const pokedex = document.getElementById("pokedex");
-const filters = inputBar.querySelectorAll(".filter");
 
 initButton.addEventListener('click', () => {
     initButton.style.visibility = 'hidden';
@@ -21,32 +20,42 @@ async function getPokemons() {
         try {
             await fetch("https://pokeapi.co/api/v2/pokemon/" + i + "/")
             .then((result) => {return result.json()})
-            .then((data) => {pokemons.push(new Pokemon(data))})
+            .then((data) => {totalPokemons.push(new Pokemon(data))})
         } catch(error) {
             alert(error);
         }
     }
-    loadingDataText.remove()
-    showPokemons();
+    loadingDataText.remove();
+    showPokemons(totalPokemons);
 }
 
 // Muestra de la Pokedex
-function showPokemons() {
+function showPokemons(pokemons) {
+    pokedex.innerHTML = ''
     for (const pokemon of pokemons) {
-        let typesLine = 'Type: ';
-        for (let type of pokemon.types) {
-            typesLine += `${type.type.name} `
-        }
-        pokedex.innerHTML += `
-        <div class="pokemon">
-            <p>${pokemon.id}. ${pokemon.name}</p>
-            <img src="${pokemon.sprite}">
-            <p class='pokemon-types'>${typesLine}</p>
-        </div>`
+        getPokemonCard(pokemon)
     }
 }
 
-// Filtrado de Pokedex
-for (const filter of filters) {
-    console.log(filter)
+function getPokemonCard(pokemon) {
+    let typesLine = 'Type: ';
+    for (let type of pokemon.types) {
+        typesLine += `${type.type.name} `
+    }
+    pokedex.innerHTML += `
+    <div class="pokemon">
+        <p>${pokemon.id}. ${pokemon.name}</p>
+        <img src="${pokemon.sprite}">
+        <p class='pokemon-types'>${typesLine}</p>
+    </div>`
+}
+
+// Filtrado por nombre de Pokedex
+const nameFilter = document.getElementById('name-filter')
+nameFilter.addEventListener('input', () => {filterPokedex(nameFilter.value)})
+
+function filterPokedex(query) {
+    let pokemonsCopy = JSON.parse(JSON.stringify(totalPokemons));
+    let filteredPokemons = pokemonsCopy.filter((pokemon) => pokemon.name.includes(query));
+    showPokemons(filteredPokemons);
 }
