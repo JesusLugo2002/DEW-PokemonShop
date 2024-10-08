@@ -12,6 +12,26 @@ header {
     gap: 10px;
 }
 
+.pokemon-card:hover {
+    animation: moveCard 0.5s;
+}
+
+.selected-card .pokemon-sprite {
+    border: 3px solid rgb(156, 156, 6);
+}
+
+@keyframes moveCard {
+    0% {
+        transform: translateY(0%);
+    }
+    50% {
+        transform: translateY(-5%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
 .pokemon-sprite {
     background-color: antiquewhite;
     padding: 20px;
@@ -20,14 +40,85 @@ header {
 
 .pokemon-types {
     display: flex;
-    justify-content: start;
+    justify-content: center;
 }
 
 .type-pill {
     margin-right: 10px;
     border-radius: 5px;
+    width: 80px;
 }
 
 .fire-color {
-    background-color: red;
+    background-color: #fd7d24;
+}
+
+.grass-color {
+    background-color: #9bcc50;
+}
+
+.poison-color {
+    background-color: #b97fc9;
+    color: white;
+}
+
+.water-color {
+    background-color: #4592c4;
+}
+
+.flying-color {
+    background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+}
+
+.bug-color {
+    color: white;
+    background-color: #729f3f;
+}
+
+.normal-color {
+    background-color: #a4acaf;
+}
+
+.ground-color {
+    background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+}
+
+.electric-color {
+    background-color: #eed535;
+}
+
+.fairy-color {
+    background-color: #fdb9e9;
+}
+
+.fighting-color {
+    color: white;
+    background-color: #d56723;
+}
+
+.psychic-color {
+    color: white;
+    background-color: #f366b9;
+}
+
+.rock-color {
+    color: white;
+    background-color: #a38c21;
+}
+
+.steel-color {
+    background-color: #9eb7b8;
+}
+
+.ice-color {
+    background-color: #51c4e7;
+}
+
+.ghost-color {
+    color: white;
+    background-color: #7b62a3;
+}
+
+.dragon-color {
+    background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
 }

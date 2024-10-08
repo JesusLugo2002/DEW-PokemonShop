@@ -18,9 +18,13 @@ export default class PokemonView {
     getTypesLine(pokemon) {
         let result = ""
         for (let type of pokemon.types) {
-            result += `<p class='type-pill ${type.type.name}-color'>${type.type.name}</p>`
+            result += `<p class='type-pill ${type.type.name}-color'>${this.toTitleCase(type.type.name)}</p>`
         }
         return result
+    }
+
+    toTitleCase(text) {
+        return text[0].toUpperCase() + text.slice(1);
     }
 
     printCard(pokemon) {
@@ -29,7 +33,7 @@ export default class PokemonView {
         <div class="pokemon-card">
             <img class="pokemon-sprite" src="${pokemon.sprite}" width="50%">
             <div class="pokemon-info">
-                <p>${pokemon.id}. ${pokemon.name}</p>
+                <p>${pokemon.id}. ${this.toTitleCase(pokemon.name)}</p>
                 <div class="pokemon-types">
                     ${types}
                 </div>
