@@ -30,7 +30,7 @@ export default class PokemonView {
     printCard(pokemon) {
         const types = this.getTypesLine(pokemon);
         const result = `
-        <div class="pokemon-card">
+        <div class="pokemon-card" id="${pokemon.id}">
             <img class="pokemon-sprite" src="${pokemon.sprite}" width="50%">
             <div class="pokemon-info">
                 <p>${pokemon.id}. ${this.toTitleCase(pokemon.name)}</p>

@@ -3,6 +3,7 @@ import Pokemon from "./Pokemon.js";
 export default class PokemonModel {
     constructor() {
         this.pokemons = []
+        this.wishlist = []
     }
 
     async fetchPokemon(id) {
@@ -26,4 +27,10 @@ export default class PokemonModel {
     getAllPokemons() {
         return this.pokemons;
     }
+
+    addToWishlist(pokemon) {
+      this.wishlist.push(pokemon)
+    }
+
+    
 }

@@ -6,6 +6,10 @@ export default class PokemonController {
         this.model = new PokemonModel();
         this.view = new PokemonView();
         this.init();
+        this.addToWishlistButton = document.getElementById("add-to-wishlist");
+        this.wishlistButton = document.getElementById("wishlist");
+        this.addToShoppingCart = document.getElementById("add-to-shopping-cart");
+        this.shoppingCartButton = document.getElementById("shopping-cart");
     }
 
     // Inicializa la aplicación en varios pasos 
@@ -14,6 +18,7 @@ export default class PokemonController {
         this.view.hideLoading();
         this.view.displayPokemons(this.model.getAllPokemons())
         this.setClickables();
+        this.setButtons();
     }
 
     // Añade selección a las cartas de Pokemon
@@ -28,5 +33,31 @@ export default class PokemonController {
                 }
             });
         }
+    }
+
+    // Configurar la función de los botones
+
+    setButtons() {
+        this.addToWishlistButton.addEventListener("click", () => {
+            let selectedPokemons = document.getElementsByClassName("selected-card")
+            for (let pokemon of selectedPokemons) {
+                console.log(pokemon);
+            }
+        });
+
+        this.wishlistButton.addEventListener("click", () => {
+            // ToDo: Mostrar una lista de los pokemons deseados
+        });
+
+        this.addToShoppingCart.addEventListener("click", () => {
+            let selectedPokemons = document.getElementsByClassName("selected-card")
+            for (let pokemon of selectedPokemons) {
+                console.log(pokemon);
+            }
+        });
+
+        this.shoppingCartButton.addEventListener("click", () => {
+            // ToDo: Mostrar una lista de los pokemons en el carrito de compra
+        });
     }
 }
