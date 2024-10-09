@@ -1,16 +1,43 @@
+body {
+    margin: 0;
+}
+
 header {
+    width: 100%;
+    padding: 20px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    gap: 10vw;
+    position: fixed;
     text-align: center;
+    z-index: 10;
+}
+
+header img {
+    width: 200px;
+}
+
+#filters-container {
+    margin-bottom: 20px;
+}
+
+#loadingDataText {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;   
+    left: 50%;
 }
 
 /* Pokedex */
 
 #pokedex {
-    margin-top: 50px;
+    padding-top: 20vh;
     text-align: center;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 10px;
-}
+}   
 
 .pokemon-card:hover {
     animation: moveCard 0.5s;

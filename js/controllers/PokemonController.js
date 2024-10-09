@@ -5,11 +5,9 @@ export default class PokemonController {
     constructor() {
         this.model = new PokemonModel();
         this.view = new PokemonView();
+        this.wishlist = [];
+        this.shoppingCart = [];
         this.init();
-        this.addToWishlistButton = document.getElementById("add-to-wishlist");
-        this.wishlistButton = document.getElementById("wishlist");
-        this.addToShoppingCart = document.getElementById("add-to-shopping-cart");
-        this.shoppingCartButton = document.getElementById("shopping-cart");
     }
 
     // Inicializa la aplicación en varios pasos 
@@ -17,12 +15,12 @@ export default class PokemonController {
         await this.model.loadPokemons();
         this.view.hideLoading();
         this.view.displayPokemons(this.model.getAllPokemons())
-        this.setClickables();
-        this.setButtons();
+        this.bindingEvents();
     }
 
-    // Añade selección a las cartas de Pokemon
-    setClickables() {
+    async bindingEvents() {
+
+        // Añade selección a las cartas de Pokemon
         const pokemonCards = document.getElementsByClassName("pokemon-card")
         for (let card of pokemonCards) {
             card.addEventListener("click", () => {
@@ -33,31 +31,63 @@ export default class PokemonController {
                 }
             });
         }
+
+        // Add to wishlist function
+        const btnAddToWishlist = document.getElementById("add-to-wishlist");
+        btnAddToWishlist.addEventListener("click", this.addToWishlist.bind(this));
+
+        // Show wishlist function
+        const btnWishlist = document.getElementById("wishlist");
+        btnWishlist.addEventListener("click", this.showWishlist.bind(this));
+
+        // Add to shopping cart
+        const btnAddToShoppingCart = document.getElementById("add-to-shopping-cart");
+        btnAddToShoppingCart.addEventListener("click", this.addToShoppingCart.bind(this));
+
+        // Show shopping cart
+        const btnShoppingCart = document.getElementById("shopping-cart");
+        btnShoppingCart.addEventListener("click", this.showShoppingCart.bind(this))
     }
 
-    // Configurar la función de los botones
-
-    setButtons() {
-        this.addToWishlistButton.addEventListener("click", () => {
-            let selectedPokemons = document.getElementsByClassName("selected-card")
-            for (let pokemon of selectedPokemons) {
-                console.log(pokemon);
+    addToWishlist() {
+        console.log("Selected Pokemons added to wishlist!")
+        const selectedCards = document.getElementsByClassName("selected-card")
+        Array.from(selectedCards).forEach(card => {
+            if (!this.wishlist.includes(card.id)) {
+                this.wishlist.push(card.id)
+            } else {
+                alert(`Warning: Pokemon #${card.id} already in wishlist. Not added.`)
             }
+            card.className = "pokemon-card"
         });
+    }
 
-        this.wishlistButton.addEventListener("click", () => {
-            // ToDo: Mostrar una lista de los pokemons deseados
+    showWishlist() {
+        let text = "Wishlist:\n\n"
+        this.wishlist.forEach((id) => {
+            text += `- Pokemon #${id}: ${this.model.getAllPokemons()[id-1].name} | ${this.model.getAllPokemons()[id-1].price}$ \n`
         });
+        alert(text)
+    }
 
-        this.addToShoppingCart.addEventListener("click", () => {
-            let selectedPokemons = document.getElementsByClassName("selected-card")
-            for (let pokemon of selectedPokemons) {
-                console.log(pokemon);
+    addToShoppingCart() {
+        console.log("Selected Pokemons added to shopping cart!")
+        const selectedCards = document.getElementsByClassName("selected-card")
+        Array.from(selectedCards).forEach(card => {
+            if (!this.shoppingCart.includes(card.id)) {
+                this.shoppingCart.push(card.id)
+            } else {
+                alert(`Warning: Pokemon #${card.id} already in shopping cart. Not added.`)
             }
+            card.className = "pokemon-card"
         });
+    }
 
-        this.shoppingCartButton.addEventListener("click", () => {
-            // ToDo: Mostrar una lista de los pokemons en el carrito de compra
+    showShoppingCart() {
+        let text = "Shopping cart:\n\n"
+        this.shoppingCart.forEach((id) => {
+            text += `- Pokemon #${id}: ${this.model.getAllPokemons()[id-1].name} | ${this.model.getAllPokemons()[id-1].price}$ \n`
         });
+        alert(text)
     }
 }
