@@ -18,7 +18,6 @@ export default class PokemonModel {
     async loadPokemons() {
         for (let i = 1; i <= 151; i++) {
           const pokemon = await this.fetchPokemon(i);
-          pokemon.price = 0;
           this.pokemons.push(pokemon);
         }
     }

@@ -21,16 +21,15 @@ export default class PokemonController {
     async bindingEvents() {
 
         // Añade selección a las cartas de Pokemon
-        const pokemonCards = document.getElementsByClassName("pokemon-card")
-        for (let card of pokemonCards) {
-            card.addEventListener("click", () => {
-                if (card.className === "pokemon-card") {
-                    card.className = "pokemon-card selected-card";
-                } else {
-                    card.className = "pokemon-card";
-                }
-            });
-        }
+        this.setCardClickables();
+
+        // Name filter
+        const nameFilter = document.getElementById("filter-by-name");
+        nameFilter.addEventListener("input", this.filterPokemons.bind(this))
+
+        // Type filter
+        const typeFilter = document.getElementById("filter-by-type");
+        typeFilter.addEventListener("input", this.filterPokemons.bind(this))
 
         // Add to wishlist function
         const btnAddToWishlist = document.getElementById("add-to-wishlist");
@@ -47,6 +46,19 @@ export default class PokemonController {
         // Show shopping cart
         const btnShoppingCart = document.getElementById("shopping-cart");
         btnShoppingCart.addEventListener("click", this.showShoppingCart.bind(this))
+    }
+
+    setCardClickables() {
+        const pokemonCards = document.getElementsByClassName("pokemon-card")
+        for (let card of pokemonCards) {
+            card.addEventListener("click", () => {
+                if (card.className === "pokemon-card") {
+                    card.className = "pokemon-card selected-card";
+                } else {
+                    card.className = "pokemon-card";
+                }
+            });
+        }
     }
 
     addToWishlist() {
@@ -89,5 +101,20 @@ export default class PokemonController {
             text += `- Pokemon #${id}: ${this.model.getAllPokemons()[id-1].name} | ${this.model.getAllPokemons()[id-1].price}$ \n`
         });
         alert(text)
+    }
+
+    filterPokemons() {
+        const nameFilterValue = document.getElementById("filter-by-name").value.toLowerCase();
+        const typeFilterValue = document.getElementById("filter-by-type").value.toLowerCase();
+
+        const filteredPokemons = this.model.getAllPokemons().filter((pokemon) => {
+            const matchName = pokemon.name.toLowerCase().includes(nameFilterValue);
+            const matchType = pokemon.types.some(type => type.type.name.toLowerCase().includes(typeFilterValue));
+
+            return matchName && matchType
+        });
+
+        this.view.displayPokemons(filteredPokemons);
+        this.setCardClickables();
     }
 }

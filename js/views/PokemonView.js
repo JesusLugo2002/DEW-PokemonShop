@@ -33,7 +33,7 @@ export default class PokemonView {
         <div class="pokemon-card" id="${pokemon.id}">
             <img class="pokemon-sprite" src="${pokemon.sprite}" width="50%">
             <div class="pokemon-info">
-                <p>${pokemon.id}. ${pokemon.name}</p>
+                <p>${pokemon.id}. ${pokemon.name} | <span class="pokemon-price">${pokemon.price}€</span></p>
                 <div class="pokemon-types">
                     ${types}
                 </div>

@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: "Roboto";
 }
 
 header {
@@ -45,6 +46,10 @@ header img {
 
 .selected-card .pokemon-sprite {
     border: 3px solid rgb(156, 156, 6);
+}
+
+.pokemon-price {
+    color: #729f3f;
 }
 
 @keyframes moveCard {
