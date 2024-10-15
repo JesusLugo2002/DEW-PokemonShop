@@ -30,6 +30,12 @@ header img {
     left: 50%;
 }
 
+/* Login and profile section */
+
+#profile-container input {
+    margin: 5px;
+}
+
 /* Pokedex */
 
 #pokedex {

@@ -1,11 +1,32 @@
+import UserModel from "../models/UserModel.js";
+import UserView from "../views/UserView.js";
+
 export default class UserController {
     constructor() {
-        this.currentUser = ""
-        this.currentBalance = 0
+        this.uid = '';
+        this.username = '';
+        this.balance = 0;
+        this.isOnline = false;
+        this.view = new UserView()
+        this.model = new UserModel()
+
         this.init();
     }
+    
+    init() {
+        this.updateProfileContainer();
+        this.bindingEvents();
+    }
 
-    async init() {
+    updateProfileContainer() {
+        if (this.isOnline) {
+            this.view.showProfile(this)
+        } else {
+            this.view.showLogin()
+        }
+    }
+
+    bindingEvents() {
         
     }
 }
