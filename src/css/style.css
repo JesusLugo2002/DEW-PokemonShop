@@ -38,7 +38,11 @@ header img {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 10px;
-}   
+}  
+
+.pokemon-card {
+    cursor: pointer;
+}
 
 .pokemon-card:hover {
     animation: moveCard 0.5s;
