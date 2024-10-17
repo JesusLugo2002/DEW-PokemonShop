@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jesus Lugo">
+    <title>Pokemon Shop | Home</title>
+    <link rel="shortcut icon" href="./assets/images/pokeball.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div id="input-bar">
+            <div id="filters-container">
+                <input type="text" name="filterByName" id="filter-by-name" placeholder="Filter by name...">
+                <input type="text" name="filterByType" id="filter-by-type" placeholder="Filter by type...">
+            </div>
+            <div id="actions-container">
+                <input type="button" value="Add to wishlist" id="add-to-wishlist">
+                <input type="button" value="Wishlist" id="wishlist">
+                <input type="button" value="Add to shopping cart" id="add-to-shopping-cart">
+                <input type="button" value="Shopping cart" id="shopping-cart">
+            </div>
+        </div>
+        <img src="./assets/images/logo.png" alt="logo" width="25%">
+    </header>
+    <main>
+        <h2 id="loadingDataText">Loading data...</h2>
+        <div id="pokedex"></div>
+    </main>
+    <script type="module" src="js/shop.js"></script>
+</body>
+</html>

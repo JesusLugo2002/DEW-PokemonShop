@@ -11,8 +11,5 @@
   "description": "",
   "dependencies": {
     "firebase": "^10.14.1"
-  },
-  "devDependencies": {
-    "parcel-bundler": "^1.12.5"
   }
 }

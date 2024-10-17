@@ -1,4 +1,5 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBkPpSJplvEVCmtTjSO2FHbjTfNLs_rhe8",
@@ -17,7 +18,7 @@ const db = getFirestore(app);
 
 export default class DBConnection {
     constructor() {
-        this.usersCollection = collection(db, "pokemon"); // Users collection connection
+        this.usersCollection = collection(db, "users"); // Users collection connection
     }
 
     // Add rows to users collection
@@ -34,7 +35,7 @@ export default class DBConnection {
     // Read all rows from users collection
     async readAll() {
         try {
-            const querySnapshot = await getDocs(this.collectionRef);
+            const querySnapshot = await getDocs(this.usersCollection);
             const dataList = querySnapshot.docs.map((doc) => ({
               id: doc.id,
               ...doc.data(),
@@ -55,5 +56,15 @@ export default class DBConnection {
         } catch (e) {
           console.error("Error actualizando documento: ", e);
         }
+    }
+
+    async delete(id) {
+        try {
+            const docRef = doc(this.usersCollection, id);
+            await deleteDoc(docRef);
+            console.log("Se borró esa vaina")
+        } catch (e) {
+            console.error("No se borró ninguna mondá")
+        }   
     }
 }

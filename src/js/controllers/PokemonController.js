@@ -1,5 +1,6 @@
 import PokemonModel from "../models/PokemonModel.js";
 import PokemonView from "../views/PokemonView.js";
+import UserController from "./UserController.js";
 
 export default class PokemonController {
     constructor() {
@@ -7,7 +8,7 @@ export default class PokemonController {
         this.view = new PokemonView();
         this.wishlist = [];
         this.shoppingCart = [];
-        this.init();
+        this.init()
     }
 
     // Inicializa la aplicación en varios pasos 

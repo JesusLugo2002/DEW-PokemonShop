@@ -4,34 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Jesus Lugo">
-    <title>Pokemon Shop | Home</title>
-    <link rel="shortcut icon" href="./assets/images/pokeball.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <title>PokemonShop | Login</title>
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <header>
-        <div id="profile-container"></div>
-        <div id="input-bar">
-            <div id="filters-container">
-                <input type="text" name="filterByName" id="filter-by-name" placeholder="Filter by name...">
-                <input type="text" name="filterByType" id="filter-by-type" placeholder="Filter by type...">
-            </div>
-            <div id="actions-container">
-                <input type="button" value="Add to wishlist" id="add-to-wishlist">
-                <input type="button" value="Wishlist" id="wishlist">
-                <input type="button" value="Add to shopping cart" id="add-to-shopping-cart">
-                <input type="button" value="Shopping cart" id="shopping-cart">
-            </div>
-        </div>
-        <img src="./assets/images/logo.png" alt="logo" width="25%">
+    <header style="text-align: center;">
+        <img src="./assets/images/logo.png" alt="logo">
     </header>
     <main>
-        <h2 id="loadingDataText">Loading data...</h2>
-        <div id="pokedex"></div>
+        <form action="" id="login">
+            <h1 style="text-align: center;">Login</h1>
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="login-username" required><br>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="login-password" required><br>
+            <input type="button" value="Login" id="login-button">
+        </form>
+        
+        <form action="" id="signup">
+            <h1 style="text-align: center;">Sign Up</h1>
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="signup-username" required><br>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="signup-password" required><br>
+            <label for="r-password">Repeat password: </label>
+            <input type="password" name="r-password" id="input-r-password" required><br>
+            <input type="button" value="Sign Up" id="signup-button">
+        </form>
     </main>
-    <script type="module" src="./js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>

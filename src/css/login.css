@@ -1,0 +1,19 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    height: 100vh;
+    gap: 5vw;
+}
+
+form {
+    font-family: Georgia;
+    padding: 50px;
+    border-radius: 25px;
+    background-color: antiquewhite;
+}
+
+input {
+    margin-bottom: 10px;
+}
