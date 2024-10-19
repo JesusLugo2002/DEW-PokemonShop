@@ -1,6 +1,6 @@
 import PokemonModel from "../models/PokemonModel.js";
 import PokemonView from "../views/PokemonView.js";
-import UserController from "./UserController.js";
+import { getUserController } from "./state.js";
 
 export default class PokemonController {
     constructor() {
@@ -8,6 +8,7 @@ export default class PokemonController {
         this.view = new PokemonView();
         this.wishlist = [];
         this.shoppingCart = [];
+        this.user = getUserController();
         this.init()
     }
 
@@ -17,6 +18,7 @@ export default class PokemonController {
         this.view.hideLoading();
         this.view.displayPokemons(this.model.getAllPokemons())
         this.bindingEvents();
+        console.log(this.user)
     }
 
     async bindingEvents() {

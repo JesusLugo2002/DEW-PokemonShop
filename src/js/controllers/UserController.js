@@ -4,8 +4,5 @@ export default class UserController {
         this.username = data["username"]
         this.password = data["password"]
     }
-
-    hola() {
-        console.log("hola")
-    }
 }
+

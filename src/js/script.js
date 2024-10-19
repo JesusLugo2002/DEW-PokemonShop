@@ -19,7 +19,6 @@ async function login() {
         if (user["username"] == inputUsername && user["password"] == inputPassword) {
             const userController = new UserController(user)
             window.open("shop.html")
-            break;
         }
     }
 }
