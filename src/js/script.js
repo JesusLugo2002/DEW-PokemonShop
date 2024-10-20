@@ -1,9 +1,8 @@
 import DBConnection from "./models/database.js";
-import UserController from "./controllers/UserController.js";
 
+const database = new DBConnection()
 const loginButton = document.getElementById("login-button");
 const signupButton = document.getElementById("signup-button");
-const database = new DBConnection()
 
 loginButton.addEventListener("click", login);
 
@@ -17,11 +16,12 @@ async function login() {
 
     for (const user of allUsers) {
         if (user["username"] == inputUsername && user["password"] == inputPassword) {
-            const userController = new UserController(user)
-            window.open("shop.html")
+            window.open(`shop.html?id=${user["id"]}`)
+            return
         }
     }
 }
+
 
 async function register() {
     console.log("pipipi")

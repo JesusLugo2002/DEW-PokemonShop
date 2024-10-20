@@ -32,8 +32,8 @@ header img {
 
 /* Login and profile section */
 
-#profile-container input {
-    margin: 5px;
+#profile-container p {
+    padding: -10px;
 }
 
 /* Pokedex */

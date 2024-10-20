@@ -8,6 +8,11 @@ export default class PokemonView {
         loadingText.remove();
     }
 
+    displayUser(data) {
+        document.getElementById("username").textContent = `Username: ${data.username}`
+        document.getElementById("balance").textContent = `Balance: ${data.balance}€`
+    }
+
     displayPokemons(pokemons) {
         this.pokedex.innerHTML = "";
         for (const pokemon of pokemons) {
