@@ -7,19 +7,18 @@ export default class PokemonController {
         this.model = new PokemonModel();
         this.view = new PokemonView();
         this.user = new UserController();
-        this.wishlist = [];
-        this.shoppingCart = [];
         this.init()
     }
 
     // Inicializa la aplicación en varios pasos 
     async init() {
         await this.model.loadPokemons();
+        const urlParameter = window.location.search.substring(4)
+        await this.user.fetchData(urlParameter)
         this.view.hideLoading();
+        this.view.displayUser(this.user)
         this.view.displayPokemons(this.model.getAllPokemons())
         this.bindingEvents();
-        await this.user.fetchData(window.location.search.substring(4))
-        this.view.displayUser(this.user)
     }
 
     async bindingEvents() {
@@ -67,44 +66,38 @@ export default class PokemonController {
 
     addToWishlist() {
         console.log("Selected Pokemons added to wishlist!")
-        const selectedCards = document.getElementsByClassName("selected-card")
-        Array.from(selectedCards).forEach(card => {
-            if (!this.wishlist.includes(card.id)) {
-                this.wishlist.push(card.id)
+        const selectedCards = Array.from(document.getElementsByClassName("selected-card"))
+        selectedCards.forEach(card => {
+            if (!this.user.wishlist.includes(card.id)) {
+                this.user.wishlist.push(card.id)
             } else {
                 alert(`Warning: Pokemon #${card.id} already in wishlist. Not added.`)
             }
             card.className = "pokemon-card"
         });
+        this.user.updateWishlist()
     }
 
     showWishlist() {
-        let text = "Wishlist:\n\n"
-        this.wishlist.forEach((id) => {
-            text += `- Pokemon #${id}: ${this.model.getAllPokemons()[id-1].name} | ${this.model.getAllPokemons()[id-1].price}$ \n`
-        });
-        alert(text)
+        window.open(`./wishlist.html?id=${this.user.id}`)
     }
 
     addToShoppingCart() {
         console.log("Selected Pokemons added to shopping cart!")
-        const selectedCards = document.getElementsByClassName("selected-card")
-        Array.from(selectedCards).forEach(card => {
-            if (!this.shoppingCart.includes(card.id)) {
-                this.shoppingCart.push(card.id)
+        const selectedCards = Array.from(document.getElementsByClassName("selected-card"))
+        selectedCards.forEach(card => {
+            if (!this.user.shoppingCart.includes(card.id)) {
+                this.user.shoppingCart.push(card.id)
             } else {
                 alert(`Warning: Pokemon #${card.id} already in shopping cart. Not added.`)
             }
             card.className = "pokemon-card"
         });
+        this.user.updateShoppingCart();
     }
 
     showShoppingCart() {
-        let text = "Shopping cart:\n\n"
-        this.shoppingCart.forEach((id) => {
-            text += `- Pokemon #${id}: ${this.model.getAllPokemons()[id-1].name} | ${this.model.getAllPokemons()[id-1].price}$ \n`
-        });
-        alert(text)
+        window.open(`./shopping-cart.html?id=${this.user.id}`)
     }
 
     filterPokemons() {

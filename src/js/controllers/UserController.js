@@ -7,6 +7,9 @@ export default class UserController {
         this.username;
         this.password;
         this.balance;
+        this.inventory;
+        this.shoppingCart;
+        this.wishlist;
     }
 
     async fetchData(id) {
@@ -17,12 +20,23 @@ export default class UserController {
                 this.username = user["username"];
                 this.password = user["password"];
                 this.balance = user["balance"];
+                this.inventory = user["inventory"];
+                this.shoppingCart = user["shoppingCart"]
+                this.wishlist = user["wishlist"]
                 return
             }
         }
     }
 
+    async updateWishlist() {
+        await this.database.update(this.id, {wishlist: this.wishlist})
+    }
+
+    async updateShoppingCart() {
+        await this.database.update(this.id, {shoppingCart: this.shoppingCart})
+    }
+
     printData() {
-        console.log(`ID: ${this.id} - Username: ${this.username} - Balance: ${this.balance}`)
+        console.log(this)
     }
 }
