@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+import { getFirestore, collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBkPpSJplvEVCmtTjSO2FHbjTfNLs_rhe8",
@@ -66,5 +66,15 @@ export default class DBConnection {
         } catch (e) {
             console.error("No se borró ninguna mondá")
         }   
+    }
+
+    async getFile(id) {
+        try {
+            const docRef = doc(this.usersCollection, id)
+            const docSnap = await getDoc(docRef)
+            return docSnap.data()
+        } catch (e) {
+            console.error("No se obtuvo la información: " + e)
+        }
     }
 }
