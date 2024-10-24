@@ -36,6 +36,16 @@ header img {
     padding: -10px;
 }
 
+#username {
+    text-decoration: underline;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#username:hover {
+    color: #0a323d;
+}
+
 /* Pokedex */
 
 #pokedex {

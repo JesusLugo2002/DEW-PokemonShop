@@ -49,6 +49,10 @@ export default class PokemonController {
         // Show shopping cart
         const btnShoppingCart = document.getElementById("shopping-cart");
         btnShoppingCart.addEventListener("click", this.showShoppingCart.bind(this))
+
+        // Show profile
+        const userProfile = document.getElementById("username")
+        userProfile.addEventListener("click", this.showProfile.bind(this))
     }
 
     setCardClickables() {
@@ -80,6 +84,10 @@ export default class PokemonController {
 
     showWishlist() {
         window.open(`./wishlist.html?id=${this.user.id}`)
+    }
+
+    showProfile() {
+        window.open(`./user-profile.html?id=${this.user.id}`)
     }
 
     addToShoppingCart() {
