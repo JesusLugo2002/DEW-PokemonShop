@@ -19,8 +19,19 @@ for (const item of shoppingCart) {
     </li>`
 }
 
-$(".remove-button").click(function() {
+$(".remove-button").click(async function() {
+    let new_shopping_cart = []
     const pokemonId = $(this).parents("li").attr("id")
+    for (let index = 0; index < shoppingCart.length; index++) {
+        if (pokemonId != shoppingCart[index]) {
+            new_shopping_cart.push(shoppingCart[index])
+        }        
+    }
+    
+    await database.update(userId, {
+        shoppingCart: new_shopping_cart
+    });
+    location.reload()
 });
 
 const accountBalance = document.getElementById("account-balance")
